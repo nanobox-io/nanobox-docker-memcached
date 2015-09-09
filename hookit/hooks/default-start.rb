@@ -4,7 +4,7 @@ service 'cache' do
   init :runit
 end
 
-ensure_socket 'db' do
+ensure_socket 'cache' do
   port '11211'
   action :listening
 end
