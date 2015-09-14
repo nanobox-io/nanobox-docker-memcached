@@ -17,20 +17,5 @@ module Hooky
       memcached_binding_protocol:                 {type: :string, default: 'auto', from: ['ascii', 'binary', 'auto']} # -B            Binding protocol - one of ascii, binary, or auto (default)
     }
 
-    def sanitize_env_vars(payload)
-      vars = payload[:environment_variables]
-  
-      # now lets enable any backwards compatible vars
-      vars.inject({}) do |res, (key, val)|
-        if /^DATABASE(\d+)_(.+)$/.match key
-          # create the backwards compatible version
-          res["DB#{$1}_#{$2}"] = val
-        end
-        # put the original back in
-        res[key] = val
-        res
-      end
-    end
-
   end
 end

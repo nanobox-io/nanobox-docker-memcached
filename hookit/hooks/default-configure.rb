@@ -1,8 +1,14 @@
 
 include Hooky::Memcached
 
+if payload[:platform] == 'local'
+  maxmemory = 128
+else
+  maxmemory = payload[:member][:schema][:meta][:ram].to_i / 1024 / 1024
+end
+
 # Setup
-converged_boxfile = converge( Hooky::Memcached::BOXFILE_DEFAULTS, payload[:boxfile] ) 
+converged_boxfile = converge( Hooky::Memcached::BOXFILE_DEFAULTS, payload[:boxfile] )
 
 # Import service (and start)
 directory '/etc/service/cache' do
@@ -20,7 +26,7 @@ template '/etc/service/cache/log/run' do
 end
 
 mem_exec = "/data/bin/memcached \
--m #{payload[:member][:schema][:meta][:ram].to_i / 1024 / 1024} \
+-m #{maxmemory} \
 -c #{boxfile[:memcached_max_connections]} \
 -f #{boxfile[:memcached_chunk_size_growth_factor]} \
 -n #{boxfile[:memcached_minimum_allocated_space]} \
