@@ -1,33 +1,30 @@
-all: image tag
+# -*- mode: make; tab-width: 4; -*-
+# vim: ts=4 sw=4 ft=make noet
+all: build publish
 
-image:
-	@vagrant up
-	@vagrant ssh -c "sudo docker build -t nanobox/memcached /vagrant"
+LATEST:=1.4
+stability?=latest
+version?=$(LATEST)
+dockerfile?=Dockerfile-$(version)
 
-tag:
-	@vagrant ssh -c "sudo docker tag -f nanobox/memcached nanobox/memcached:1.4"
-	@vagrant ssh -c "sudo docker tag -f nanobox/memcached nanobox/memcached:1.4-stable"
-	@vagrant ssh -c "sudo docker tag -f nanobox/memcached nanobox/memcached:1.4-beta"
-	@vagrant ssh -c "sudo docker tag -f nanobox/memcached nanobox/memcached:1.4-alpha"
-	@vagrant ssh -c "sudo docker tag -f nanobox/memcached nanobox/memcached:stable"
-	@vagrant ssh -c "sudo docker tag -f nanobox/memcached nanobox/memcached:beta"
-	@vagrant ssh -c "sudo docker tag -f nanobox/memcached nanobox/memcached:alpha"
+login:
+	@vagrant ssh -c "docker login"
 
-publish: push_14_stable
+build:
+	@echo "Building 'memcached' image..."
+	@vagrant ssh -c "docker build -f /vagrant/Dockerfile-${version} -t nanobox/memcached /vagrant"
 
-push_14_stable: push_14_beta
-	@vagrant ssh -c "sudo docker push nanobox/memcached"
-	@vagrant ssh -c "sudo docker push nanobox/memcached:1.4"
-	@vagrant ssh -c "sudo docker push nanobox/memcached:1.4-stable"
-	@vagrant ssh -c "sudo docker push nanobox/memcached:stable"
-
-push_14_beta: push_14_alpha
-	@vagrant ssh -c "sudo docker push nanobox/memcached:1.4-beta"
-	@vagrant ssh -c "sudo docker push nanobox/memcached:beta"
-
-push_14_alpha:
-	@vagrant ssh -c "sudo docker push nanobox/memcached:1.4-alpha"
-	@vagrant ssh -c "sudo docker push nanobox/memcached:alpha"
+publish:
+	@echo "Tagging 'memcached:${version}-${stability}' image..."
+	@vagrant ssh -c "docker tag -f nanobox/memcached nanobox/memcached:${version}-${stability}"
+	@echo "Publishing 'memcached:${version}-${stability}'..."
+	@vagrant ssh -c "docker push nanobox/memcached:${version}-${stability}"
+ifeq ($(version),$(LATEST))
+	@echo "Publishing 'memcached:${stability}'..."
+	@vagrant ssh -c "docker tag -f nanobox/memcached nanobox/memcached:${stability}"
+	@vagrant ssh -c "docker push nanobox/memcached:${stability}"
+endif
 
 clean:
-	@vagrant destroy -f
+	@echo "Removing all images..."
+	@vagrant ssh -c "for image in \$$(docker images -q); do docker rmi -f \$$image; done"
