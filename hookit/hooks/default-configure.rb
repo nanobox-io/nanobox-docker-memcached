@@ -27,14 +27,14 @@ end
 
 mem_exec = "/data/bin/memcached \
 -m #{maxmemory} \
--c #{boxfile[:memcached_max_connections]} \
--f #{boxfile[:memcached_chunk_size_growth_factor]} \
--n #{boxfile[:memcached_minimum_allocated_space]} \
--R #{boxfile[:memcached_maximum_requests_per_event]} \
--b #{boxfile[:memcached_max_backlog]} \
--B #{boxfile[:memcached_binding_protocol]} \
-   #{boxfile[:memcached_return_error_on_memory_exhausted] ? '-M' : ''} \
-   #{boxfile[:memcached_disable_cas] ? '-C' : ''}"
+-c #{converged_boxfile[:memcached_max_connections]} \
+-f #{converged_boxfile[:memcached_chunk_size_growth_factor]} \
+-n #{converged_boxfile[:memcached_minimum_allocated_space]} \
+-R #{converged_boxfile[:memcached_maximum_requests_per_event]} \
+-b #{converged_boxfile[:memcached_max_backlog]} \
+-B #{converged_boxfile[:memcached_binding_protocol]} \
+   #{converged_boxfile[:memcached_return_error_on_memory_exhausted] ? '-M' : ''} \
+   #{converged_boxfile[:memcached_disable_cas] ? '-C' : ''}"
 
 template '/etc/service/cache/run' do
   mode 0755

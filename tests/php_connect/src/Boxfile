@@ -1,0 +1,10 @@
+build:
+  php_extensions:
+    - session
+    - memcache
+web1:
+  name: test
+memcached1:
+  name: memcached
+  version: 1.4
+  stability: latest
