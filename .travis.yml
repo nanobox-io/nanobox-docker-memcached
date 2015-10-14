@@ -1,8 +1,7 @@
 sudo: required
 
 env:
-  - VERSION=10.0
-  - VERSION=5.5
+  - VERSION=1.4
 
 services:
   - docker
