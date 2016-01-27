@@ -7,4 +7,4 @@ web1:
 memcached1:
   name: memcached
   version: 1.4
-  stability: latest
+  stability: stable
