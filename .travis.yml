@@ -1,0 +1,14 @@
+sudo: required
+
+env:
+  - VERSION=1.4
+
+services:
+  - docker
+
+before_install:
+  - echo building $VERSION
+  - docker build -t nanobox/memcached:$VERSION $VERSION
+  - docker tag -f nanobox/memcached:$VERSION nanobox/memcached:$VERSION-beta
+
+script: sudo tests/run.sh $VERSION
