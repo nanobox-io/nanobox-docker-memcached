@@ -27,4 +27,4 @@ RUN rm -rf \
       /var/tmp/*
 
 # Run runit automatically
-CMD /opt/gonano/bin/nanoinit
+CMD [ "/opt/gonano/bin/nanoinit" ]
