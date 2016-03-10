@@ -1,4 +1,4 @@
-# Memcached
+# Memcached ![Build Status Image](https://travis-ci.org/nanobox-io/nanobox-docker-memcached.svg)
 This is an Memcached Docker image used to launch a Memcached service on Nanobox. To use this image, add a data component to your `boxfile.yml` with the `nanobox/memcached` image specified:
 
 ```yaml
@@ -55,7 +55,7 @@ data:
 ### Return Error on Memory Exhausted
 This allows you to have memcached return an error when memory is exhausted rather than removing items.
 
-#### memcached\_return\_error\_on\_memory\_exhausted
+#### return\_error\_on\_memory\_exhausted
 ```yaml
 #default setting
 data:
@@ -67,7 +67,7 @@ data:
 ### Max Connections
 Sets the limit for simultaneous connections.
 
-#### memcached\_max\_connections
+#### max\_connections
 ```yaml
 #default setting
 data:
@@ -79,7 +79,7 @@ data:
 ### Chunk Size Growth Factor
 Specifies the chunk size growth factor.
 
-#### memcached\_chunk\_size\_growth\_factor
+#### chunk\_size\_growth\_factor
 ```yaml
 #default setting
 data:
@@ -91,7 +91,7 @@ data:
 ### Minimum Allocated Space
 Sets the minimum space allocated for key+value+flags.
 
-#### memcached\_minimum\_allocated\_space
+#### minimum\_allocated\_space
 ```yaml
 #default setting
 data:
@@ -103,7 +103,7 @@ data:
 ### Maximum Requests Per Event
 Sets the maximum number of requests per event and limits the number of requests processed for a given connection to prevent starvation.
 
-#### memcached\_maximum\_requests\_per\_event
+#### maximum\_requests\_per\_event
 ```yaml
 #default setting
 data:
@@ -115,7 +115,7 @@ data:
 ### Disable CAS
 Allows you to disable the use of [CAS](https://code.google.com/p/memcached/wiki/NewCommands#cas).
 
-#### memcached\_disable\_cas
+#### disable\_cas
 ```yaml
 #default setting
 data:
@@ -127,7 +127,7 @@ data:
 ### Max Backlog
 Sets the backlog queue limit.
 
-#### memcached\_max\_backlog
+#### max\_backlog
 ```yaml
 #default setting
 data:
@@ -143,7 +143,7 @@ Allows you to set the binding protocol. The following are available:
 - ascii
 - binary
 
-#### memcached\_binding\_protocol
+#### binding\_protocol
 ```yaml
 #default setting
 data:
