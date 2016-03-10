@@ -7,7 +7,7 @@ data:
 ```
 
 ## Memcached Configuration Options
-Memcached components are configured in the `boxfile.yml`. All available configuration options are outlined below.
+Memcached components are configured in your `boxfile.yml`. All available configuration options are outlined below.
 
 ###### Quick Links
 [version](#version)  
@@ -153,7 +153,7 @@ data:
 ```
 
 ## Help & Support
-This is a Memcached image provided by [Nanobox](http://nanobox.io). If you need help with this image, you can reach out to us in the [#nanobox IRC channel](http://webchat.freenode.net/?channels=nanobox). If you are running into an issue with the image, feel free to [create a new issue on this project](https://github.com/nanobox-io/nanobox-docker-memcached/issues/new).
+This is a Memcached Docker image provided by [Nanobox](http://nanobox.io). If you need help with this image, you can reach out to us in the [#nanobox IRC channel](http://webchat.freenode.net/?channels=nanobox). If you are running into an issue with the image, feel free to [create a new issue on this project](https://github.com/nanobox-io/nanobox-docker-memcached/issues/new).
 
 ## License
 
