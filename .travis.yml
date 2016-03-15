@@ -11,4 +11,4 @@ before_install:
   - docker build -t nanobox/memcached:$VERSION $VERSION
   - docker tag -f nanobox/memcached:$VERSION nanobox/memcached:$VERSION-beta
 
-script: sudo tests/run.sh $VERSION
+script: sudo test/run.sh $VERSION

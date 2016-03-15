@@ -13,12 +13,17 @@ RUN rm -rf /data/var/db/pkgin && \
     rm -rf /data/var/db/pkgin/cache
 
 # Install hooks
-RUN rm -rf /var/gonano/db/pkgin && \
-    /opt/gonano/bin/pkgin -y up && \
-    /opt/gonano/bin/pkgin -y in \
-        jq \
-        hooks-update && \
-    rm -rf /var/gonano/db/pkgin/cache
+RUN mkdir -p /opt/nanobox/hooks && \
+    curl \
+      -f \
+      -k \
+      https://s3.amazonaws.com/tools.nanobox.io/hooks/memcached-stable.tgz \
+        | tar -xz -C /opt/nanobox/hooks && \
+    curl \
+      -f \
+      -k \
+      -o /opt/nanobox/memcached-stable.md5 \
+      https://s3.amazonaws.com/tools.nanobox.io/hooks/memcached-stable.md5
 
 # Cleanup disk
 RUN rm -rf \
