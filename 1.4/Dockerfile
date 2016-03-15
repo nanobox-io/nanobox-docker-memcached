@@ -5,6 +5,9 @@ FROM nanobox/runit
 # Create directories
 RUN mkdir -p /var/log/gonano
 
+# Copy files
+ADD files/. /
+
 # Install binaries
 RUN rm -rf /data/var/db/pkgin && \
     /data/bin/pkgin -y up && \
