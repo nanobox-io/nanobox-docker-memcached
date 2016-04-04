@@ -6,7 +6,6 @@ FROM nanobox/runit
 RUN mkdir -p /var/log/gonano
 
 # Copy files
-ADD hookit/. /opt/gonano/hookit/mod/
 ADD files/. /
 
 # Install binaries
@@ -15,6 +14,19 @@ RUN rm -rf /data/var/db/pkgin && \
     /data/bin/pkgin -y in \
         memcached-1.4 && \
     rm -rf /data/var/db/pkgin/cache
+
+# Install hooks
+RUN mkdir -p /opt/nanobox/hooks && \
+    curl \
+      -f \
+      -k \
+      https://s3.amazonaws.com/tools.nanobox.io/hooks/memcached-stable.tgz \
+        | tar -xz -C /opt/nanobox/hooks && \
+    curl \
+      -f \
+      -k \
+      -o /opt/nanobox/memcached-stable.md5 \
+      https://s3.amazonaws.com/tools.nanobox.io/hooks/memcached-stable.md5
 
 # Cleanup disk
 RUN rm -rf \
