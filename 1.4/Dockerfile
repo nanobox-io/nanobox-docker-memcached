@@ -5,9 +5,6 @@ FROM nanobox/runit
 # Create directories
 RUN mkdir -p /var/log/gonano
 
-# Copy files
-ADD files/. /
-
 # Install binaries
 RUN rm -rf /data/var/db/pkgin && \
     /data/bin/pkgin -y up && \
@@ -17,6 +14,7 @@ RUN rm -rf /data/var/db/pkgin && \
 
 # Install hooks
 RUN mkdir -p /opt/nanobox/hooks && \
+    mkdir -p /var/nanobox && \
     curl \
       -f \
       -k \
@@ -25,7 +23,7 @@ RUN mkdir -p /opt/nanobox/hooks && \
     curl \
       -f \
       -k \
-      -o /opt/nanobox/memcached-stable.md5 \
+      -o /var/nanobox/hooks.md5 \
       https://s3.amazonaws.com/tools.nanobox.io/hooks/memcached-stable.md5
 
 # Cleanup disk

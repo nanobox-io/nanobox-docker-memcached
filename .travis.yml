@@ -7,8 +7,6 @@ services:
   - docker
 
 before_install:
-  - echo building $VERSION
-  - docker build -t nanobox/memcached:$VERSION $VERSION
-  - docker tag -f nanobox/memcached:$VERSION nanobox/memcached:$VERSION-beta
+  - docker build -t nanobox/memcached:$VERSION ./$VERSION
 
 script: sudo test/run_all.sh $VERSION
