@@ -2,7 +2,7 @@
 This is an Memcached Docker image used to launch a Memcached service on Nanobox. To use this image, add a data component to your `boxfile.yml` with the `nanobox/memcached` image specified:
 
 ```yaml
-data:
+data.cache:
   image: nanobox/memcached
 ```
 
@@ -22,7 +22,7 @@ Memcached components are configured in your `boxfile.yml`. All available configu
 
 #### Overview of Memcached Boxfile Settings
 ```yaml
-data:
+data.cache:
   image: nanobox/memcached
   config:
     version: 1.4
@@ -46,7 +46,7 @@ When configuring a Memcached component in your Boxfile, you can specify which ve
 #### version
 ```yaml
 # default setting
-data:
+data.cache:
   image: nanobox/memcached
   config:
     version: 1.4
@@ -58,7 +58,7 @@ This allows you to have memcached return an error when memory is exhausted rathe
 #### return\_error\_on\_memory\_exhausted
 ```yaml
 #default setting
-data:
+data.cache:
   image: nanobox/memcached
   config:
     return_error_on_memory_exhausted: false
@@ -70,7 +70,7 @@ Sets the limit for simultaneous connections.
 #### max\_connections
 ```yaml
 #default setting
-data:
+data.cache:
   image: nanobox/memcached
   config:
     max_connections: 1024
@@ -82,7 +82,7 @@ Specifies the chunk size growth factor.
 #### chunk\_size\_growth\_factor
 ```yaml
 #default setting
-data:
+data.cache:
   image: nanobox/memcached
   config:
     chunk_size_growth_factor: 1.25
@@ -94,7 +94,7 @@ Sets the minimum space allocated for key+value+flags.
 #### minimum\_allocated\_space
 ```yaml
 #default setting
-data:
+data.cache:
   image: nanobox/memcached
   config:
     minimum_allocated_space: 48
@@ -106,7 +106,7 @@ Sets the maximum number of requests per event and limits the number of requests 
 #### maximum\_requests\_per\_event
 ```yaml
 #default setting
-data:
+data.cache:
   image: nanobox/memcached
   config:
     maximum_requests_per_event: 20
@@ -118,7 +118,7 @@ Allows you to disable the use of [CAS](https://code.google.com/p/memcached/wiki/
 #### disable\_cas
 ```yaml
 #default setting
-data:
+data.cache:
   image: nanobox/memcached
   config:
     disable_cas: false
@@ -130,7 +130,7 @@ Sets the backlog queue limit.
 #### max\_backlog
 ```yaml
 #default setting
-data:
+data.cache:
   image: nanobox/memcached
   config:
     max_backlog: 1024
@@ -146,7 +146,7 @@ Allows you to set the binding protocol. The following are available:
 #### binding\_protocol
 ```yaml
 #default setting
-data:
+data.cache:
   image: nanobox/memcached
   config:
     binding_protocol: 'auto'
