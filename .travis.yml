@@ -14,7 +14,7 @@ script: sudo test/run_all.sh $VERSION
 after_success:
   - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-  - docker build -t ${NAMESPACE}/memcached ./${VERSION}
+  - docker build -t ${NAMESPACE}/memcached ./${VERSION};
   - docker tag ${NAMESPACE}/memcached ${NAMESPACE}/memcached:${VERSION}-beta;
   - docker push ${REMOTE}${NAMESPACE}/memcached:${VERSION}-beta;
   - if [ "$VERSION" == "1.4" ]; then
@@ -24,7 +24,7 @@ after_success:
   - if [ "$BRANCH" == "master" ]; then
     if [ "$VERSION" == "1.4" ]; then
     docker push ${REMOTE}${NAMESPACE}/memcached;
-    fi
+    fi;
     docker tag ${NAMESPACE}/memcached ${NAMESPACE}/memcached:${VERSION};
     docker push ${REMOTE}${NAMESPACE}/memcached:${VERSION};
     else
