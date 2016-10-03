@@ -1,4 +1,4 @@
-# Memcached ![Build Status Image](https://travis-ci.org/nanobox-io/nanobox-docker-memcached.svg)
+# Memcached [![Build Status Image](https://travis-ci.org/nanobox-io/nanobox-docker-memcached.svg)](https://travis-ci.org/nanobox-io/nanobox-docker-memcached)
 This is an Memcached Docker image used to launch a Memcached service on Nanobox. To use this image, add a data component to your `boxfile.yml` with the `nanobox/memcached` image specified:
 
 ```yaml
