@@ -17,8 +17,16 @@ after_success:
   - docker build -t ${NAMESPACE}/memcached ./${VERSION}
   - docker tag ${NAMESPACE}/memcached ${NAMESPACE}/memcached:${VERSION}-beta;
   - docker push ${REMOTE}${NAMESPACE}/memcached:${VERSION}-beta;
-  - if [ "$BRANCH" == "master" ]; then
+  - if [ "$VERSION" == "1.4" ]; then
+    docker tag ${NAMESPACE}/memcached ${NAMESPACE}/memcached:beta;
     docker push ${REMOTE}${NAMESPACE}/memcached;
+    fi
+  - if [ "$BRANCH" == "master" ]; then
+    if [ "$VERSION" == "1.4" ]; then
+    docker push ${REMOTE}${NAMESPACE}/memcached;
+    fi
+    docker tag ${NAMESPACE}/memcached ${NAMESPACE}/memcached:${VERSION};
+    docker push ${REMOTE}${NAMESPACE}/memcached:${VERSION};
     else
     docker tag ${NAMESPACE}/memcached ${NAMESPACE}/memcached:${VERSION}-${BRANCH//\//_};
     docker push ${REMOTE}${NAMESPACE}/memcached:${VERSION}-${BRANCH//\//_};
