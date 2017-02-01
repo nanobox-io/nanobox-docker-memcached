@@ -18,6 +18,8 @@ RUN rm -rf /data/var/db/pkgin && \
         memcached-1.4 && \
     rm -rf /data/var/db/pkgin/cache
 
+RUN /opt/gonano/bin/gem install remote_syslog_logger
+
 # Install hooks
 RUN mkdir -p /opt/nanobox/hooks && \
     mkdir -p /var/nanobox && \
