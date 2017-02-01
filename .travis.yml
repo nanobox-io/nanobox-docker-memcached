@@ -29,6 +29,7 @@ after_success:
     fi
   # `latest` tag is only pushed on master && most recent version
   - if [ "$BRANCH" == "master" ] && [ "$VERSION" == "1.4" ]; then
+    docker tag ${NAMESPACE}/memcached:squashed ${NAMESPACE}/memcached;
     docker push ${REMOTE}${NAMESPACE}/memcached;
     fi
   # `$VERSION` (latest/stable implied) tag is only pushed on master. tag branch for clarity otherwise (`$VERSION-$BRANCH`)
