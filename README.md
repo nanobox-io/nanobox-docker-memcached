@@ -40,6 +40,7 @@ data.cache:
 When configuring a Memcached component in your Boxfile, you can specify which version to use. The following version(s) are available:
 
 - 1.4
+- 1.5
 
 **Note:** Due to version compatibility constraints, memcached versions cannot be changed after the component is created. To use a different version, you'll have to create a new Memcached component.
 
