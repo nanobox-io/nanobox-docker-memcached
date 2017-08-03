@@ -44,6 +44,8 @@ Vagrant.configure(2) do |config|
     cd /vagrant
     docker build -t nanobox/memcached:1.4 --no-cache=true 1.4
     docker tag nanobox/memcached:1.4 nanobox/memcached:1.4
+    docker build -t nanobox/memcached:1.5 --no-cache=true 1.5
+    docker tag nanobox/memcached:1.5 nanobox/memcached:1.5
   SCRIPT
 
 end
