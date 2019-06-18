@@ -3,7 +3,7 @@ This is an Memcached Docker image used to launch a Memcached service on Nanobox.
 
 ```yaml
 data.cache:
-  image: nanobox/memcached
+  image: nanobox/memcached:1.4
 ```
 
 ## Memcached Configuration Options
@@ -23,9 +23,8 @@ Memcached components are configured in your `boxfile.yml`. All available configu
 #### Overview of Memcached Boxfile Settings
 ```yaml
 data.cache:
-  image: nanobox/memcached
+  image: nanobox/memcached:1.4
   config:
-    version: 1.4
     return_error_on_memory_exhausted: false
     max_connections: 1024
     chunk_size_growth_factor: 1.25
@@ -48,9 +47,7 @@ When configuring a Memcached component in your Boxfile, you can specify which ve
 ```yaml
 # default setting
 data.cache:
-  image: nanobox/memcached
-  config:
-    version: 1.4
+  image: nanobox/memcached:1.4
 ```
 
 ### Return Error on Memory Exhausted
